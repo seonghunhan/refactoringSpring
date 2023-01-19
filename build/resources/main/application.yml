@@ -1,0 +1,42 @@
+server:
+  port: 9000
+
+spring:
+#  main :
+#    spring.main.allow-bean-definition-overriding: true
+  application:
+    name: demo
+
+  datasource:
+    ## Mysql setting
+    platform: mysql
+    url:  jdbc:mysql://doris2db.crnyyhyizv97.ap-northeast-2.rds.amazonaws.com:3306/doris2DB
+    username: master
+    password: zhtmahtm159
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql 8버전
+    #driver-class-name: com.mysql.jdbc.Driver # mysql 5버전
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate:
+#        #        show_sql: true
+#        format_sql: true
+
+  jpa:
+    # 데베플랫폼을 mysql8로 설정하였기에 동적 쿼리를 mysql 문법으로 쿼리가 생성되어 실행되는 것이다!
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl.auto: update
+        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    open-in-view: false
+    show-sql: true
+
+  logging:
+    level:
+      org.hibernate.SQL: debug
+
